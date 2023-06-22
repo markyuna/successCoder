@@ -15,7 +15,6 @@ const UserCourses = ({navigation}) => {
     Alert.alert(
       'Attention',
       'Voulez vous vraiment supprimer cette formation ?',
-      'Êtes-vous sûr de vouloir supprimer cette formation ?',
        [
         { text: 'NON'},
         { 
