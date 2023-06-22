@@ -8,7 +8,7 @@ const COURSES = [
     image: 'https://res.cloudinary.com/dxrttyi2g/image/upload/v1687389982/java_suy0du.jpg',
     price: 99.99,
     selected: false,
-    instructorId: '1'
+    instructorId: '2'
   }, 
   {
     id: '2',
@@ -26,7 +26,7 @@ const COURSES = [
     image: 'https://res.cloudinary.com/dxrttyi2g/image/upload/v1687390578/wordpress_oeka1z.jpg',
     price: 29.49,
     selected: false,
-    instructorId: '1'
+    instructorId: '5'
   }, 
   {
     id: '4',

@@ -1,20 +1,38 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
-import { FlatList } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
+import { Alert, TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native'
 import EmptyMsg from '../components/EmptyMsg'
 import globalStyles from '../styles/globalStyles'
+import { deleteCourse} from '../redux/actions/actionDeleteCourse'
 
 import { AntDesign } from '@expo/vector-icons';
 
 const UserCourses = ({navigation}) => {
 
-  const existingCourses = useSelector(state => state.courses.existingCourses)
+  const dispatch = useDispatch()
 
-  if (existingCourses.length > 0) {
+  const handleDeleteCourse = (courseId) => {
+    Alert.alert(
+      'Attention',
+      'Voulez vous vraiment supprimer cette formation ?',
+      'Êtes-vous sûr de vouloir supprimer cette formation ?',
+       [
+        { text: 'NON'},
+        { 
+          text: 'OUI',
+          onPress: () => dispatch(deleteCourse(courseId))
+        }
+       ]
+    )
+    
+  }
+
+  const loggedInmemberCourses = useSelector(state => state.courses.loggedInmemberCourses);
+
+  if (loggedInmemberCourses.length > 0) {
     return (
       <FlatList 
-        data={existingCourses}
+        data={loggedInmemberCourses}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
           <View style={styles.couseContainer}>
@@ -32,7 +50,7 @@ const UserCourses = ({navigation}) => {
                   <AntDesign name="edit" size={24} color="black" />
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => alert('ici on efface le cours')}
+                onPress={() => handleDeleteCourse(item.id)}
                 style={styles.touchableIcon}
               >
                   <AntDesign name="delete" size={24} color={globalStyles.green}/>
@@ -46,7 +64,6 @@ const UserCourses = ({navigation}) => {
     return <EmptyMsg text="Pas de cours à afficher" />
 }
 
-export default UserCourses
 
 const styles = StyleSheet.create({
   couseContainer: {
@@ -81,3 +98,5 @@ const styles = StyleSheet.create({
     padding: 9,
   },
 })
+
+export default UserCourses

@@ -1,6 +1,6 @@
 
 
-import { ADD_TO_CART, REMOVE_COURSE_CART, ADD_PAYMENT } from "../constants";
+import { ADD_TO_CART, REMOVE_COURSE_CART, ADD_PAYMENT, DELETE_COURSE } from "../constants";
 
 const initialState = {
   cartCourses: [],
@@ -40,6 +40,22 @@ const reducerCart = (state = initialState, action) => {
         cartCourses: [],
         total: 0,
       };
+
+    case DELETE_COURSE:
+      const indexCourseResult = state.cartCourses.findIndex(course => course.id !== action.courseId);
+
+      const courseinfo = state.cartCourses[indexCourseResult];
+
+      if (indexCourseResult >= 0) {
+        const newCartCourses = [...state.cartCourses];
+        newCartCourses.splice(indexCourseResult, 1);
+
+        return {
+          ...state,
+          cartCourses: newCartCourses,
+          total: state.total - courseinfo.price,
+        }
+      }
 
     default:
       return state;
