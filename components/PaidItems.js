@@ -1,5 +1,6 @@
-import { TouchableOpacity, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { TouchableOpacity, ScrollView, StyleSheet, Text, View } from 'react-native';
+import CoursesOverview from './CoursesOverview';
 import globalStyles from '../styles/globalStyles';
 import { AntDesign } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -27,17 +28,22 @@ const PaidItems = ({ totalPrice, date, courseDetails }) => {
         <AntDesign 
           name={ isShowing ? "minuscircleo" : "pluscircleo" }
           size={24} 
-          color="black" 
-
+          color={globalStyles.green}
         />
       </TouchableOpacity>
 
     {
       isShowing && (
         <View style={styles.detailsPaidCourses}>
-          <Text>Titre: {courseDetails.title}</Text>
-          <Text>Prix: {courseDetails.price}</Text>
-          <Text>Id: {courseDetails.id}</Text>
+          {
+            courseDetails.courses.map(course => (
+              <CoursesOverview 
+                key={course.id}
+                title={course.title}
+                price={course.price}
+              />
+            ))
+          }
         </View>
       )
     }
