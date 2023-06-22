@@ -25,6 +25,16 @@ export const PaymentNavigator = () => {
                         />
                     </HeaderButtons>
                 ),
+                headerLeft: () => (
+                    <HeaderButtons HeaderButtonComponent={CustomHeaderIcon}>
+                        <Item
+                            title="Menu"
+                            iconName="menu"
+                            onPress={() => navigation.openDrawer()}
+                            style={{marginLeft: 10}}
+                        />
+                    </HeaderButtons>
+                ),
             }
             )}
         >
