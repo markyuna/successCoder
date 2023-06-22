@@ -1,12 +1,13 @@
 
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { CoursesNavigator } from './CoursesStackNav';
 import { CartNavigator } from './CartStackNav';
 import { PaymentNavigator } from './PaymentStackNav';
+import { UserNavigator } from './UserStackNav';
 
-import { MaterialIcons } from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator();
 
@@ -37,6 +38,16 @@ export const DrawerNavigator = () => {
                     drawerIcon: () => <MaterialIcons name="credit-card" size={24}/>
                 }}
             />
+
+            <Drawer.Screen 
+                name="MyCourses" 
+                component={UserNavigator}  
+                options={{
+                    title: 'Mes Cours',
+                    drawerIcon: () => <MaterialIcons name="mic" size={24}/>
+                }}
+            />
+
         </Drawer.Navigator>
     );
 }
