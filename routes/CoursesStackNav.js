@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import CustomHeaderIcon from '../components/CustomHeaderIcon';
 import Landing from '../screens/Landing';
 import CourseInfos from '../screens/CourseInfos';
-import Cart from '../screens/Cart';
 import globalStyles from '../styles/globalStyles';
 
 const CoursesStackNavigator = createStackNavigator();
@@ -11,21 +12,37 @@ const CoursesStackNavigator = createStackNavigator();
 export const CoursesNavigator = () => {
     return (
         <CoursesStackNavigator.Navigator
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: '#f4511e',
-                },
-                headerTintColor: '#fff',
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-                },
-            }}
+            screenOptions={({navigation}) => (
+                {
+                headerStyle: {  backgroundColor: globalStyles.green },
+                headerTitleStyle: {fontWeight: 'bold'},
+                headerTintColor: globalStyles.white,
+                headerRight: () => (
+                    <HeaderButtons HeaderButtonComponent={CustomHeaderIcon}>
+                        <Item
+                            title="Panier"
+                            iconName="shopping-cart"
+                            onPress={() => navigation.navigate('Cart')}
+                        />
+                    </HeaderButtons>
+                ),
+                headerLeft: () => (
+                    <HeaderButtons HeaderButtonComponent={CustomHeaderIcon}>
+                        <Item
+                            title="Menu"
+                            iconName="menu"
+                            onPress={() => navigation.openDrawer()}
+                        />
+                    </HeaderButtons>
+                ),
+            }
+            )}
         >
             <CoursesStackNavigator.Screen 
                 name="Landing" 
                 component={Landing} 
-
-                />
+                options={{title: 'Catalogue'}}
+            />
             <CoursesStackNavigator.Screen 
                 name="Details" 
                 component={CourseInfos}
@@ -33,11 +50,7 @@ export const CoursesNavigator = () => {
                     title: route.params.title
                 })}
             />
-            <CoursesStackNavigator.Screen 
-                name="Cart" 
-                component={Cart} 
-
-                />
+           
         </CoursesStackNavigator.Navigator>
     );
 }

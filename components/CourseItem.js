@@ -34,12 +34,12 @@ const CourseItem = (props) => {
         <TouchableOpacity
             onPress={props.viewDetails}
         >
-            <MaterialIcons name="remove-red-eye" size={35} color={globalStyles.green} />
+            <MaterialIcons name="remove-red-eye" size={25} color={globalStyles.green} />
         </TouchableOpacity>
         <TouchableOpacity
             onPress={props.onAddToCart}
         >
-            <MaterialIcons name="shopping-basket" size={35} color={globalStyles.green} />
+            <MaterialIcons name="shopping-basket" size={25} color={globalStyles.green} />
         </TouchableOpacity>
       </View>
     </View> 
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     courseContainerDetails: {
         alignItems: 'center',
         height: '25%',
-        padding: 10,
+        padding: 15,
     },
     courseTitle: {
         fontSize: 18,
