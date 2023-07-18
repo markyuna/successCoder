@@ -8,7 +8,6 @@ import { CartNavigator } from './CartStackNav';
 import { PaymentNavigator } from './PaymentStackNav';
 import { UserNavigator } from './UserStackNav';
 
-
 const Drawer = createDrawerNavigator();
 
 export const DrawerNavigator = () => {
